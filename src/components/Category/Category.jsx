@@ -176,7 +176,7 @@ export const Category = () => {
         </div>
 
         <Modal
-          title={isEditMode ? "Edit Category" : "Add Category"}
+          title={isEditMode ? "Tahrirlash  " : "Categoriya qo'shish"}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
