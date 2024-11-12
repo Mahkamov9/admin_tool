@@ -102,7 +102,7 @@ export const Category = () => {
     fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/categories/${clickId}`, {
       method: 'PUT',
       headers: {
-        "Authorization": "Bearer YOUR_TOKEN_HERE"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6InJlZnJlc2giLCJpYXQiOjE3MTE4MDM2NDYsImV4cCI6MTc0MzMzOTY0Nn0.mGv7sWLps6F5WpZEZQ5FL18Mcixh-ETV6lUIR-TCpxA"
       },
       body: formData,
     }).then((res) => res.json())
@@ -130,15 +130,8 @@ export const Category = () => {
       <ToastContainer />
       <section>
         <div className="category">
-          <div className='category-search-wrapper'>
-            <label htmlFor="search">
-              <input type="text" />
-              <button>Search</button>
-            </label>
-          </div>
           <div className='category-table-box'>
-            <h2>Kategoriya jadvali</h2>
-            <p>Kategoriyalar jadvalini ko‘rish:</p>
+            <h2>Categories table</h2>
             <table>
               <thead>
                 <tr>
@@ -187,19 +180,19 @@ export const Category = () => {
             onChange={(e) => setNameEn(e?.target?.value)}
             type="text"
             placeholder="Name EN"
-            style={{ width: "100%", marginBottom: "10px" }}
+            style={{ width: "100%", margin: "10px 0" , height: "40px", padding: "10px" }}
           />
           <input
             value={nameRu}
             onChange={(e) => setNameRu(e?.target?.value)}
             type="text"
             placeholder="Name RU"
-            style={{ width: "100%", marginBottom: "10px" }}
+            style={{ width: "100%", margin: "10px 0" , height: "40px", padding: "10px" }}
           />
           <input
             onChange={(e) => setImage(e.target.files[0])}
             type="file"
-            style={{ width: "100%", marginBottom: "10px" }}
+            style={{ width: "100%", margin: "10px 0" }}
           />
         </Modal>
       </section>
