@@ -4,6 +4,11 @@ import "./Dashboard.css";
 
 export const Dashboard = () => {
   return (
-    <div className='dashboard'><h1>welcome</h1></div>
+    <>
+      <section className='dashboard'>
+        <h1>AUTOZOOM</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis voluptatem fugit, perferendis laboriosam molestiae officia.</p>
+      </section>
+    </>
   )
 }

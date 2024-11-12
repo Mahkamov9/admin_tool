@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from 'antd'
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
 
-
 export const ToggleThemeButton = ({darkTheme, toggleTheme}) => {
   return (
     <>
@@ -14,6 +13,5 @@ export const ToggleThemeButton = ({darkTheme, toggleTheme}) => {
     </>
   )
 }
-
 
 export default ToggleThemeButton;

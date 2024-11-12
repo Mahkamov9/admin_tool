@@ -1,0 +1,72 @@
+.header{
+  background-color: #001529;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  padding-right: 50px;
+}
+
+.layout_page{
+  background-color: #4fa0bb;
+}
+
+
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 10px;
+  margin-top: 18px;
+}
+
+.logo-icon{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-radius: 50px;
+  background-color: rgba(28, 17, 41, 0.88);
+}
+
+
+.layout{
+  height: 100vh;
+}
+
+.menu-bar{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1rem;
+  position: relative;
+}
+
+.toggle-theme-btn{
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.toggle{
+  margin-left: 15px;
+}
+
+
+
+.out_btn{
+  border: none;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+}

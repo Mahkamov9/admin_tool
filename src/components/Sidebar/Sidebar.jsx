@@ -1,30 +1,24 @@
 import { useState } from 'react';
 import { Layout, Button, theme } from 'antd';
-// import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 import { MenuList } from '../MenuList';
 import Logo from '../Logo';
+import "./Sidebar.css"
 import ToggleThemeButton from '../ToggleThemeButton';
+import { Outlet, Link } from 'react-router-dom';
 
+const { Sider } = Layout;
 
-const { Header, Sider } = Layout;
-
-function Sidebar({ children }) {
+function Sidebar() {
   const [darkTheme, setDarkTheme] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
-
-  // Tema o'zgarishi uchun funksiya
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
   };
-
-  // Ant Design ranglaridan foydalanish
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
   return (
     <Layout className='layout'>
-      {/* Sider paneli */}
       <Sider
         collapsed={collapsed}
         collapsible
@@ -39,20 +33,13 @@ function Sidebar({ children }) {
           toggleTheme={toggleTheme}
         />
       </Sider>
-
-      {/* Asosiy Layout */}
-      <Layout>
-        {/* <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            className="toggle"
-            onClick={() => setCollapsed(!collapsed)}
-            icon={collapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}
-          />
-        </Header> */}
-
-        {children}
-
+      <Layout className='layout_page'>
+        <main>
+          <div className='header'>
+            <Button className='out_btn'><Link to="/login">Chiqish</Link></Button>
+          </div>
+          <Outlet/>
+        </main>
       </Layout>
     </Layout>
   );
