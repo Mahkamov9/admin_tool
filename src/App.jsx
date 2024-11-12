@@ -5,6 +5,7 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 import LoginFinal from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import { Brands } from "./pages/Brands/Brands";
+import Models from "./pages/Models/Models";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="category" element={<Category />} />
             <Route path="brands" element={<Brands/>} />
             <Route path="dashboard" element={<Dashboard/>} />
+            <Route path="models" element={<Models/>} />
           </Route>
         </Routes>
       </Router>
