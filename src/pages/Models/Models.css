@@ -1,0 +1,74 @@
+.model_modal_box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.model_modal {
+  background-color: aquamarine;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: '10px';
+}
+
+.model_modal h2{
+  color: black;
+}
+
+.models_buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.models_buttons button{
+  width: 100%;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  transition: 0.33s;
+}
+
+.models_buttons button:hover{
+  transform: scale(1.02);
+}
+
+.models_buttons button:first-child{
+  margin-top: 30px;
+  background-color: rgb(73, 222, 18);
+  width: 100%;
+}
+
+.models_buttons button:last-child{
+  background-color: red;
+
+}
+
+.model_modal input, select{
+  outline: none;
+  font-size: 1.2rem;
+  padding: 5px;
+  height: 35px;
+  margin: 10px 0;
+}
+
+/* .model_modal select{
+  margin-top: 10px;
+  height: 35px;
+} */

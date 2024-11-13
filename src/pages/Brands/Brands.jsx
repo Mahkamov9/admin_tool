@@ -120,11 +120,6 @@ export const Brands = () => {
     // console.log(brand?.id);
   }
 
-
-
-
-
-
   const styles = {
     openButton: {
       padding: '10px 20px',

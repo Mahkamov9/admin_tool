@@ -13,6 +13,7 @@ export const Category = () => {
   const [image, setImage] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [clickId, setClickId] = useState(null);
+  const token = localStorage.getItem("tokenbek")
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -61,7 +62,7 @@ export const Category = () => {
 
     axios.post("https://autoapi.dezinfeksiyatashkent.uz/api/categories", formData, {
       headers: {
-        "Authorization": "Bearer YOUR_TOKEN_HERE"
+        "Authorization": `Bearer ${token}`
       }
     })
       .then((response) => {
@@ -75,11 +76,12 @@ export const Category = () => {
   };
 
   // DELETE Category
+
   const deleteCategory = (id) => {
     fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/categories/${id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": "Bearer YOUR_TOKEN_HERE"
+        "Authorization": `Bearer ${token}`
       }
     }).then((res) => res.json())
       .then((item) => {
