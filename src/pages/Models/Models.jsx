@@ -83,32 +83,57 @@ export default function Models() {
 
   // PUT METHOD Models   ?.!
 
-  const editModels = () => {
+  // const editModels = () => {
 
-    const formData = new FormData();
-    formData.append("name", modelName);
-    formData.append("brand_id", brandId);
+  //   const formData = new FormData();
+  //   formData.append("name", modelName);
+  //   formData.append("brand_id", brandId);
 
-    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`, {
-      method: "PUT",
+  //   fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Authorization": `Bearer  ${token}`
+  //     },
+  //     body: formData,
+  //   }).then((res) => res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  // }
+  // const [clickId, setClickId] = useState();
+  // function handeleClickId(item){
+  //   openModal()
+  //   clickId(item?.id)
+  //   console.log(clickId);
+
+  // }
+
+  
+
+  // DELETE METHOD Models
+
+  const deleteModels =(id)=>{
+    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`,{
+      method: "DELETE",
       headers: {
-        "Authorization": `Bearer  ${token}`
+        "Authorization": ` Bearer ${token}`
       },
-      body: formData,
-    }).then((res) => res.json())
-      .then(data => {
-        console.log(data)
-      })
-  }
-  const [clickId, setClickId] = useState();
-  function handeleClickId(item){
-    openModal()
-    clickId(item?.id)
-    console.log(clickId);
-
+    }).then((res)=>res.json())
+    .then((data)=>{
+      if(data?.success){
+        toast.success(data?.message)
+      }else{
+        toast.error(data?.message)
+      }
+    }).catch((error)=>{
+      console.log(data.message)
+    })
   }
 
-  // DELETE mothod Models
+  const handleClickDelete=(model)=>{
+    deleteModels(model?.id)
+    console.log(model)
+  }
 
   return (
     <>
@@ -140,7 +165,7 @@ export default function Models() {
                         style={{ backgroundColor: "blue", margin: 2, padding: 3, color: "white" }}
                       >Edit</Button>
                       <Button
-                        onClick={() => { setDeleteClickId(item.id) }}
+                        onClick={() => { handleClickDelete(item) }}
                         style={{ backgroundColor: "red", margin: 2, padding: 3, color: "white" }}
                       >Delete</Button>
                     </td>
@@ -165,10 +190,11 @@ export default function Models() {
                   />
                   <label>Select Brand</label>
                   <select value={brandId || ""} onChange={(e) => setBrandId(e?.target?.value)}>
+                    <option aria-disabled >Tanlang</option>
                     {brands?.map((item, index) => (
                       <option key={index} value={item?.id}>{item?.title}</option>
                     ))}
-                  </select>
+                    </select>
                   <div className='models_buttons'>
                     <button onClick={postModels}>Add</button>
                     <button onClick={closeModal}>Close</button>
