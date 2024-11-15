@@ -267,7 +267,7 @@ export const Brands = () => {
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
                     style={styles.fileInput}
-                    required={!isEditing} // Required only for new entries
+                    required={!isEditing} 
                   />
                   <div style={styles.boxBtn}>
                     <button onClick={postBrands} style={styles.addButton}>

@@ -5,14 +5,14 @@ import { toast, ToastContainer } from 'react-toastify'
 
 
 export default function Models() {
-  const [deleteClickId, setDeleteClickId] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [modelName, setModelName] = useState("");
   const [brandId, setBrandId] = useState();
   const [malumot, setMalumot] = useState();
   const [brands, setBrands] = useState();
+  const [updateData, setUpdateData] = useState();
+  const [isEditModal, setIsEditModal] = useState(false);
 
-  // console.log(brandId);
 
 
   const token = localStorage.getItem("tokenbek")
@@ -21,6 +21,8 @@ export default function Models() {
       toast.error("Token mavjud emas, iltimos tizimga qayta kiring.");
     }
   }, [token])
+
+
 
   // GET METHOD Models
   const getModels = () => {
@@ -46,7 +48,21 @@ export default function Models() {
   const closeModal = () => {
     setIsOpen(false);
   };
+  // Edit Modal
+  const openEditModal = () => {
+    setIsEditModal(true)
+  }
 
+  const closeEditModal = () => {
+    setIsEditModal(false)
+  }
+
+  function handeClickEdit(item) {
+    editModels(item?.id)
+    openEditModal()
+    console.log(item.id)
+
+  }
 
   // POST METHOD Models
   const postModels = (e) => {
@@ -79,60 +95,53 @@ export default function Models() {
       });
   };
 
-
-
-  // PUT METHOD Models   ?.!
-
-  // const editModels = () => {
-
-  //   const formData = new FormData();
-  //   formData.append("name", modelName);
-  //   formData.append("brand_id", brandId);
-
-  //   fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Authorization": `Bearer  ${token}`
-  //     },
-  //     body: formData,
-  //   }).then((res) => res.json())
-  //     .then(data => {
-  //       console.log(data)
-  //     })
-  // }
-  // const [clickId, setClickId] = useState();
-  // function handeleClickId(item){
-  //   openModal()
-  //   clickId(item?.id)
-  //   console.log(clickId);
-
-  // }
-
-  
+  // PUT METHOD Models           ?.!
+  const editModels = () => {
+    const formData = new FormData();
+    formData.append("name", modelName);
+    formData.append("brand_id", brandId);
+    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${updateData?.id}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
+      body: formData,
+    }).then((res) => res.json())
+      .then(data => {
+        if (data.success) {
+          toast.success(data?.message)
+          getModels()
+          closeEditModal()
+        } else {
+          toast.error(data?.message)
+        }
+      }).catch((error) => {
+        console.error("PUT Request Error:", error);
+      })
+  }
 
   // DELETE METHOD Models
-
-  const deleteModels =(id)=>{
-    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`,{
+  const deleteModels = (id) => {
+    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/models/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": ` Bearer ${token}`
       },
-    }).then((res)=>res.json())
-    .then((data)=>{
-      if(data?.success){
-        toast.success(data?.message)
-      }else{
-        toast.error(data?.message)
-      }
-    }).catch((error)=>{
-      console.log(data.message)
-    })
+    }).then((res) => res.json())
+      .then((data) => {
+        if (data?.success) {
+          getModels()
+          toast.success(data?.message)
+        } else {
+          toast.error(data?.message)
+        }
+      }).catch((error) => {
+        console.log(data.message)
+      })
   }
-
-  const handleClickDelete=(model)=>{
+  const handleClickDelete = (model) => {
+    getModels();
     deleteModels(model?.id)
-    console.log(model)
   }
 
   return (
@@ -161,7 +170,7 @@ export default function Models() {
                     </td>
                     <td>
                       <Button
-                        onClick={()=>{handeleClickId(item)}}
+                        onClick={() => { handeClickEdit(item); setUpdateData(item) }}
                         style={{ backgroundColor: "blue", margin: 2, padding: 3, color: "white" }}
                       >Edit</Button>
                       <Button
@@ -194,10 +203,40 @@ export default function Models() {
                     {brands?.map((item, index) => (
                       <option key={index} value={item?.id}>{item?.title}</option>
                     ))}
-                    </select>
+                  </select>
                   <div className='models_buttons'>
                     <button onClick={postModels}>Add</button>
                     <button onClick={closeModal}>Close</button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {isEditModal && (
+              <div className='model_modal_box'>
+                <div className='model_modal'>
+                  <h2>Edit models</h2>
+                  <label >Name</label>
+                  <input
+                    defaultValue={updateData.name}
+                    onChange={(e) => setModelName(e?.target?.value)}
+                    type="text"
+                    required
+                    placeholder="model name"
+                  />
+                  <label>Select Brand</label>
+                  {/* <select value="" onChange={(e)=>setBrandId(e?.target?.value)}>
+                    <option aria-disabled >Tanlang</option>
+                  </select> */}
+                  <select defaultValue={updateData.brand_id} onChange={(e) => setBrandId(e?.target?.value)}>
+                    <option aria-disabled >Tanlang</option>
+                    {brands?.map((item, index) => (
+                      <option key={index} value={item?.id}>{item?.title}</option>
+                    ))}
+                  </select>
+                  <div className='models_buttons'>
+                    <button onClick={editModels}>Edit</button>
+                    <button onClick={closeEditModal}>Close</button>
                   </div>
                 </div>
               </div>

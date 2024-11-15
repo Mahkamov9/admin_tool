@@ -104,7 +104,7 @@ export const Category = () => {
     fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/categories/${clickId}`, {
       method: 'PUT',
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6InJlZnJlc2giLCJpYXQiOjE3MTE4MDM2NDYsImV4cCI6MTc0MzMzOTY0Nn0.mGv7sWLps6F5WpZEZQ5FL18Mcixh-ETV6lUIR-TCpxA"
+        "Authorization": `Bearer ${token}`
       },
       body: formData,
     }).then((res) => res.json())
